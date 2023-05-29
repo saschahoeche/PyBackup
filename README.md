@@ -29,19 +29,19 @@ This script performs an incremental copy of a folder and its contents to a speci
 
 ## Example
 
-    ```python
-    import os
-    import shutil
-    import time
+```python
+import os
+import shutil
+import time
 
-    # Function definitions...
+# Function definitions...
 
-    if __name__ == "__main__":
-        source_folder = "/path/to/source/folder"
-        destination_folder = "/path/to/destination/folder"
+if __name__ == "__main__":
+    source_folder = "/path/to/source/folder"
+    destination_folder = "/path/to/destination/folder"
 
-        incremental_copy(source_folder, destination_folder)
-    ```
+    incremental_copy(source_folder, destination_folder)
+```
 
 ## License
 This project is licensed under the MIT License.
