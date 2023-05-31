@@ -17,13 +17,13 @@ This script performs an incremental copy of a folder and its contents to a speci
 ## Usage
 
 1. Ensure you have Python 3 installed on your system.
-2. Clone this repository or download the `incremental_copy.py` script.
-3. Open a terminal or command prompt and navigate to the directory containing the `incremental_copy.py` script.
-4. Modify the source folder and destination folder paths in the `incremental_copy.py` script according to your requirements.
+2. Clone this repository or download the `PyBackup.py` script.
+3. Open a terminal or command prompt and navigate to the directory containing the `PyBackup.py` script.
+4. Modify the source folder and destination folder paths in the `PyBackup.py` script according to your requirements.
 5. Run the script by executing the following command:
 
    ```shell
-   python incremental_copy.py
+   python PyBackup.py
    ```
 6. The script will perform the incremental copy, display the progress information, and generate a log file in the parent folder of the destination folder.
 
