@@ -75,8 +75,7 @@ def incremental_copy(source_folder, destination_folder):
             # Print progress information
             print(
                 "Progress: %.2f%% | Processed Files: %d/%d | Copied Files: %d | Elapsed Time: %.2fs" %
-                (progress, processed_files, total_files, copied_files, elapsed_time),
-                end="\r",
+                (progress, processed_files, total_files, copied_files, elapsed_time)
             )
 
     print(
