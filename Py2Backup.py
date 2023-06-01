@@ -19,7 +19,7 @@ def incremental_copy(source_folder, destination_folder):
     """
     # Ensure source folder exists
     if not os.path.exists(source_folder):
-        print "Source folder '%s' does not exist." % source_folder
+        print ("Source folder '%s' does not exist.") % source_folder
         return
 
     # Ensure destination folder exists
@@ -77,7 +77,7 @@ def incremental_copy(source_folder, destination_folder):
                 )
             )
 
-    print "\nIncremental copy completed successfully. Total Files Copied: %d." % copied_files
+    print ("\nIncremental copy completed successfully. Total Files Copied: %d.") % copied_files
 
     # Generate log file
     generate_log_file(copied_files_info, destination_folder)
@@ -114,11 +114,11 @@ def generate_log_file(copied_files_info, destination_folder):
             log_file.write("To: %s\n" % dest_file)
             log_file.write("\n")
 
-    print "Log file '%s' generated." % log_filename
+    print ("Log file '%s' generated.") % log_filename
 
 
 if __name__ == "__main__":
-    source_folder = "/home/zaesh/Documents/temp"
-    destination_folder = "/home/zaesh/Documents/temp2"
+    source_folder = "C:/Users/HoecheSa/OneDrive - BASF/Documents/temp"
+    destination_folder = "C:/Users/HoecheSa/OneDrive - BASF/Documents/temp2"
 
     incremental_copy(source_folder, destination_folder)
