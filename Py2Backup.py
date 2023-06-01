@@ -27,9 +27,7 @@ def incremental_copy(source_folder, destination_folder):
         os.makedirs(destination_folder)
 
     # Get the total number of files for progress calculation
-    total_files = 0
-    for root, dirs, files in os.walk(source_folder):
-        total_files += len(files)
+    total_files = sum(len(files) for _, _, files in os.walk(source_folder))
 
     # Initialize progress variables
     processed_files = 0
@@ -38,9 +36,6 @@ def incremental_copy(source_folder, destination_folder):
 
     # List to store the copied files' information
     copied_files_info = []
-
-    # Retrieve the last backup time if available
-    last_backup_time = get_last_backup_time(destination_folder)
 
     # Iterate over the source folder recursively
     for root, dirs, files in os.walk(source_folder):
@@ -56,11 +51,9 @@ def incremental_copy(source_folder, destination_folder):
             src_file = os.path.join(root, file)
             dest_file = os.path.join(dest_root, file)
 
-            # Copy the file if it's modified or doesn't exist in the destination or last backup time is earlier
+            # Check if the file is modified or doesn't exist in the destination
             if not os.path.exists(dest_file) or (
-                os.path.getmtime(src_file) > os.path.getmtime(dest_file)
-            ) or last_backup_time is None or (
-                os.path.getmtime(src_file) > last_backup_time
+                    int(os.path.getmtime(src_file)) > int(os.path.getmtime(dest_file))
             ):
                 shutil.copy2(src_file, dest_file)
                 copied_files += 1
@@ -72,66 +65,22 @@ def incremental_copy(source_folder, destination_folder):
             processed_files += 1
 
             # Calculate progress percentage
-            progress = float(processed_files) / total_files * 100
+            progress = processed_files / float(total_files) * 100
 
             # Calculate elapsed time
             elapsed_time = time.time() - start_time
 
             # Print progress information
-            print "Progress: %.2f%% | Processed Files: %d/%d | Copied Files: %d | Elapsed Time: %.2fs" % (
-                progress, processed_files, total_files, copied_files, elapsed_time),
+            print(
+                "Progress: %.2f%% | Processed Files: %d/%d | Copied Files: %d | Elapsed Time: %.2fs" % (
+                    progress, processed_files, total_files, copied_files, elapsed_time
+                )
+            )
 
     print "\nIncremental copy completed successfully. Total Files Copied: %d." % copied_files
 
     # Generate log file
     generate_log_file(copied_files_info, destination_folder)
-
-    # Update the last backup time
-    update_last_backup_time(destination_folder)
-
-
-def get_last_backup_time(destination_folder):
-    """
-    Retrieve the last backup time from the destination folder.
-
-    Args:
-        destination_folder (str): The path to the destination folder.
-
-    Returns:
-        last_backup_time (float): The last backup time as a floating-point timestamp,
-                                  or None if the last backup time file is not found.
-
-    Raises:
-        None
-    """
-    last_backup_file = os.path.join(destination_folder, "last_backup_time.txt")
-
-    if os.path.exists(last_backup_file):
-        with open(last_backup_file, "r") as f:
-            last_backup_time = float(f.read().strip())
-        return last_backup_time
-
-    return None
-
-
-def update_last_backup_time(destination_folder):
-    """
-    Update the last backup time in the destination folder.
-
-    Args:
-        destination_folder (str): The path to the destination folder.
-
-    Returns:
-        None
-
-    Raises:
-        None
-    """
-    last_backup_file = os.path.join(destination_folder, "last_backup_time.txt")
-    current_time = time.time()
-
-    with open(last_backup_file, "w") as f:
-        f.write(str(current_time))
 
 
 def generate_log_file(copied_files_info, destination_folder):
@@ -152,12 +101,12 @@ def generate_log_file(copied_files_info, destination_folder):
     """
     log_filename = os.path.join(
         os.path.dirname(destination_folder),
-        "incremental_copy_log_%s_%s.txt" % (os.path.basename(destination_folder), time.strftime("%Y%m%d_%H%M%S")),
+        "incremental_copy_log_%s_%s.txt" % (os.path.basename(destination_folder), time.strftime('%Y%m%d_%H%M%S'))
     )
 
     with open(log_filename, "w") as log_file:
         log_file.write("Incremental Copy Log\n")
-        log_file.write("Date and Time: %s\n\n" % time.strftime("%Y-%m-%d %H:%M:%S"))
+        log_file.write("Date and Time: %s\n\n" % time.strftime('%Y-%m-%d %H:%M:%S'))
 
         log_file.write("Copied Files:\n")
         for src_file, dest_file in copied_files_info:
@@ -169,7 +118,7 @@ def generate_log_file(copied_files_info, destination_folder):
 
 
 if __name__ == "__main__":
-    source_folder = "/path/to/source/folder"
-    destination_folder = "/path/to/destination/folder"
+    source_folder = "/home/zaesh/Documents/temp"
+    destination_folder = "/home/zaesh/Documents/temp2"
 
     incremental_copy(source_folder, destination_folder)

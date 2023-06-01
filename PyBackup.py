@@ -122,7 +122,7 @@ def generate_log_file(copied_files_info, destination_folder):
 
 
 if __name__ == "__main__":
-    source_folder = "/path/to/source/folder"
-    destination_folder = "/path/to/destination/folder"
+    source_folder = "/home/zaesh/Documents/temp"
+    destination_folder = "/home/zaesh/Documents/temp2"
 
     incremental_copy(source_folder, destination_folder)

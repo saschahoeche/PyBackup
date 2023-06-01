@@ -16,7 +16,7 @@ This script performs an incremental copy of a folder and its contents to a speci
 
 ## Usage
 
-1. Ensure you have Python 3 installed on your system.
+1. Ensure you have Python 3 installed on your system. (If you use Python 2.7, use the `Py2Backup.py` script instead)
 2. Clone this repository or download the `PyBackup.py` script.
 3. Open a terminal or command prompt and navigate to the directory containing the `PyBackup.py` script.
 4. Modify the source folder and destination folder paths in the `PyBackup.py` script according to your requirements.
