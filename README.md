@@ -25,6 +25,7 @@ This script performs an incremental copy of a folder and its contents to a speci
    ```shell
    python PyBackup.py
    ```
+
 6. The script will perform the incremental copy, display the progress information, and generate a log file in the parent folder of the destination folder.
 
 ## Example
@@ -43,8 +44,14 @@ if __name__ == "__main__":
     incremental_copy(source_folder, destination_folder)
 ```
 
+## Use with Windows Task Scheduler
+
+To use this script with the Windows Task Scheduler, create a `Basic Task` to `Start a program`.
+
+Now Link the program/script to the `cmd.exe`, usually at `C:\Windows\System32\cmd.exe` and add the arguments with following syntax: `/k [Link to python.exe] [Link to PyBackup.py]`
+
+Remember to link the correct version of the interpreter with the correct version of the script.
+
 ## License
+
 This project is licensed under the MIT License.
-
-
-
