@@ -8,7 +8,7 @@ This script performs an incremental copy of a folder and its contents to a speci
 
 ## Features
 
-- Performs incremental backup of a folder and its contents
+- Performs an incremental backup of a folder and its contents
 - Supports copying files and preserving their metadata (timestamps, permissions, etc.)
 - Generates a log file with the summary of the copied files
 - Provides progress information during the copying process
